@@ -6,6 +6,10 @@ import Players from './Players'
 import Teams from './Teams'
 import Navbar from './Navbar'
 
+function FourOfour() {
+  return <h1 className='text-center'>404 Not Found</h1>
+}
+
 class App extends Component {
   render() {
     return (
@@ -17,6 +21,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/players' component={Players} />
             <Route path='/teams' component={Teams} />
+            <Route component={FourOfour} />
           </Switch>
         </div>
       </Router>
