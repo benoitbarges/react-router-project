@@ -48,7 +48,7 @@ export default class Players extends Component {
             if(loading) return null
 
             const player = players.find(player => slug(player.name) === match.params.playerId)
-            console.log(player)
+
             return (
               <div className='panel'>
                 <img className='avatar' src={player.avatar} alt={`picture of ${player.name}`} />

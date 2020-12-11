@@ -6,6 +6,7 @@ import Players from './Players'
 import Teams from './Teams'
 import TeamPage from './TeamPage'
 import Navbar from './Navbar'
+import Articles from './Articles'
 
 function FourOfour() {
   return <h1 className='text-center'>404 Not Found</h1>
@@ -22,7 +23,8 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/players' component={Players} />
             <Route path='/teams' component={Teams} />
-            <Route path='/:teamId' component={TeamPage} />
+            <Route path='/:teamId/articles' component={Articles} />
+            <Route exact path='/:teamId' component={TeamPage} />
             <Route component={FourOfour} />
           </Switch>
         </div>
