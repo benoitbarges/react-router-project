@@ -11,12 +11,6 @@ export default class Team extends Component {
     this.fetchTeam(this.props.id)
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-     this.fetchTeam(this.props.id)
-    }
-  }
-
   fetchTeam = (id) => {
     this.setState({ team: null })
 

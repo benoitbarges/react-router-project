@@ -14,6 +14,20 @@ a {
   text-decoration: none;
 }
 
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  display: none !important;
+}
+
 .container {
   position: relative;
   max-width: 1000px;
