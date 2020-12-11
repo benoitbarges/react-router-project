@@ -1,25 +1,37 @@
 import React, { Component } from 'react'
 import { getTeam } from '../api'
-import { Link } from 'react-router-dom'
-import { getTeamsArticles } from '../api'
+import { Link, Redirect } from 'react-router-dom'
+import { getTeamsArticles, getTeamNames } from '../api'
 
 import TeamLogo from './TeamLogo'
 import Team from './Team'
 
 export default class TeamPage extends Component {
   state = {
-    articles: []
+    articles: [],
+    teamNames: [],
+    loading: true
   }
 
   componentDidMount() {
-    getTeamsArticles(this.props.match.params.teamId)
-      .then(articles => this.setState({ articles }))
+    Promise.all([
+      getTeamNames(),
+      getTeamsArticles(this.props.match.params.teamId)
+    ])
+      .then(([teamNames, articles]) => this.setState({ teamNames, articles, loading: false }))
   }
 
   render() {
-    console.log(this.props)
+
+    const teamId = this.props.match.params.teamId
+    const { articles, teamNames, loading } = this.state
+
+    if (!teamNames.includes(teamId) && !loading) {
+      return <Redirect to='/' />
+    }
+
     return (
-      <Team id={this.props.match.params.teamId}>
+      <Team id={teamId}>
         {(team) => team === null
             ? <h1>Loading</h1>
             : <div className='panel'>
@@ -47,11 +59,11 @@ export default class TeamPage extends Component {
                 </ul>
                 <h2 className='header'>Articles</h2>
                 <ul className='articles'>
-                  {this.state.articles.map(({ title, id }) => (
+                  {articles.map(({ title, id, date }) => (
                     <li key={id}>
                       <Link to={`${this.props.match.url}/articles/${id}`}>
                         <h4 className='article-title'>{title}</h4>
-                        <div className='article-date'></div>
+                        <div className='article-date'>{date.toLocaleDateString()}</div>
                       </Link>
                     </li>
                   ))}
