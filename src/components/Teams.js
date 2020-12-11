@@ -40,7 +40,7 @@ export default class Teams extends Component {
                         <TeamLogo id={team.id} className='center' />
                         <h1 className='medium-header'>{team.name}</h1>
                         <ul className='info-list row'>
-                          <li>Etablished<div>{team.established}</div></li>
+                          <li>Established<div>{team.established}</div></li>
                           <li>Manager<div>{team.manager}</div></li>
                           <li>Coach<div>{team.coach}</div></li>
                         </ul>
