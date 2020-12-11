@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 import Article from './Article'
+import Loading from './Loading'
 
 export default class Articles extends Component {
   state = {
@@ -35,7 +36,7 @@ export default class Articles extends Component {
             <div className='panel'>
               <Article id={match.params.articleId} teamId={match.params.teamId}>
                 {(article) => article === null
-                  ? <h1>Loading</h1>
+                  ? <Loading />
                   : <div className='panel'>
                       <article className='article'>
                         <h1 className='header'>{article.title}</h1>
